@@ -15,3 +15,64 @@
 #     password: changeme
 #     name:     Kris Wallsmith
 #     email:    kris.wallsmith@symfony-project.com
+
+sfGuardUser:
+  admin:        { username: admin, password: admin, is_super_admin: true }
+  Melvil:       { username: Melvil, password: 123 }
+  test:        { username: test, password: 123 }
+
+Category:
+  cat1:         { }
+  cat2:         { }
+  cat3:         { }
+  cat4:         { }
+  cat5:         { }
+
+CategoryI18n:
+  cat1_en:      { id: cat1, culture: en, title: Search }
+  cat1_ru:      { id: cat1, culture: ru, title: Поиск }
+  cat2_en:      { id: cat2, culture: en, title: Mail }
+  cat2_ru:      { id: cat2, culture: ru, title: Почта }
+  cat3_en:      { id: cat3, culture: en, title: News }
+  cat3_ru:      { id: cat3, culture: ru, title: Новости }
+  cat4_en:      { id: cat4, culture: en, title: Work }
+  cat4_ru:      { id: cat4, culture: ru, title: Работа }
+  cat5_en:      { id: cat5, culture: en, title: Games }
+  cat5_ru:      { id: cat5, culture: ru, title: Игры }
+
+Bookmark:
+  b1:           { user_id: Melvil, title: Google, url: google.com, info: самый лучший поисковик }
+  b2:           { user_id: Melvil, title: Mail.ru, url: mail.ru }
+  b3:           { user_id: Melvil, title: Yandex, url: yandex.ru, info: найдётся всё }
+  b4:           { user_id: Melvil, title: Bing, url: bing.ru }
+  b5:           { user_id: Melvil, title: Rambler, url: rambler.ru }
+  b6:           { user_id: Melvil, title: Nigma, url: http://nigma.ru }
+  b7:           { user_id: Melvil, title: Почта гугла, url: gmail.com }
+  b8:           { user_id: admin, title: Яндекс почта, url: mail.yandex.ru }
+  b9:           { user_id: admin, title: Хабрахабр, url: http://habrahabr.ru/ }
+  b10:          { user_id: Melvil, title: Basecamp, url: https://basecamp.com }
+  b11:          { user_id: test, title: Яндекс почта, url: http://www.overclockers.ru/ }
+  b12:          { user_id: admin, title: Github, url: https://github.com/ }
+  b13:          { user_id: admin, title: Bitbucket, url: https://bitbucket.org/ }
+
+BookmarkCategory:
+  bc1:           { bookmark_id: b1, category_id: cat1 }
+  bc2:           { bookmark_id: b2, category_id: cat1 }
+  bc3:           { bookmark_id: b2, category_id: cat2 }
+  bc4:           { bookmark_id: b3, category_id: cat1 }
+  bc5:           { bookmark_id: b4, category_id: cat1 }
+  bc6:           { bookmark_id: b5, category_id: cat1 }
+  bc7:           { bookmark_id: b6, category_id: cat1 }
+  bc8:           { bookmark_id: b7, category_id: cat2 }
+  bc9:           { bookmark_id: b8, category_id: cat2 }
+  bc10:          { bookmark_id: b9, category_id: cat3 }
+  bc11:          { bookmark_id: b9, category_id: cat4 }
+  bc12:          { bookmark_id: b10, category_id: cat4 }
+  bc13:          { bookmark_id: b11, category_id: cat3 }
+  bc14:          { bookmark_id: b12, category_id: cat4 }
+  bc15:          { bookmark_id: b13, category_id: cat4 }
+
+Vote:
+  v1:           { user_id: Melvil, bookmark_id: b1, vote: true }
+  v2:           { user_id: Melvil, bookmark_id: b2, vote: false }
+  v3:           { user_id: admin, bookmark_id: b1, vote: true }
