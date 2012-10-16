@@ -11,6 +11,6 @@ class categoriesComponents extends sfComponents
 {
 	public function executeCategories(sfWebRequest $request)
 	{
-		 $this->Categories = CategoryPeer::doSelect(new Criteria());
+		 $this->Categories = CategoryPeer::doSelectWithI18n(new Criteria());
 	}
 }
