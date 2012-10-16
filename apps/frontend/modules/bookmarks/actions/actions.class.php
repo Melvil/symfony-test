@@ -110,7 +110,15 @@ class bookmarksActions extends sfActions
 
 	protected function bookmarksSelect($request, $criteria)
 	{
+		$this->Category = CategoryPeer::retrieveByPk($request->getParameter('category'));
+
+		if ($this->Category)
+			$criteria->
+				addJoin(BookmarkPeer::ID, BookmarkCategoryPeer::BOOKMARK_ID, Criteria::INNER_JOIN)->
+				add(BookmarkCategoryPeer::CATEGORY_ID, $this->Category->getId(), Criteria::EQUAL);
+
 		$this->Bookmarks = BookmarkPeer::doSelectWithSearch($request->getParameter('search'), $criteria);
+
 		$this->setTemplate('index');
 	}
 }

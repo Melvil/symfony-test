@@ -73,6 +73,8 @@
             </ul>
           <?php endif; ?>
 
+          <?php include_component('categories', 'categories') ?>
+
         </div>
       </div>
 

@@ -1,7 +1,16 @@
+<?php
+  $form_action = array(
+    'module' => $sf_request->getParameter('module'),
+    'action' => $sf_request->getParameter('action'),
+    'category' => $sf_request->getParameter('category')
+  );
+  if (!$form_action['category']) unset($form_action['category']);
+?>
+
 <h1><?php echo __('Bookmarks List') ?></h1>
 
 <br />
-<form action="<?php echo url_for($sf_request->getParameter('module') . '/' . $sf_request->getParameter('action')) ?>" method="get">
+<form action="<?php echo url_for($form_action) ?>" method="get">
   <input type="text" name="search" value="<?php echo $sf_request->getParameter('search') ?>" id="search_keywords" />
   <input type="submit" value="<?php echo __('search') ?>" />
   <div class="help"><?php echo __('Enter some keywords (title, info, url)') ?></div>
@@ -33,4 +42,4 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('bookmarks/new') ?>"><?php echo __('New bookmark') ?></a>
+<?php echo link_to(__('New bookmark'), 'bookmarks/new') ?>
