@@ -47,21 +47,25 @@
 
   <div class="container">
     <div class="row">
-
        <div class="span9">
 
         <?php if ($sf_user->hasFlash('notice')): ?>
-          <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <?php echo $sf_user->getFlash('notice') ?>
+          </div>
         <?php endif; ?>
  
         <?php if ($sf_user->hasFlash('error')): ?>
-          <div class="flash_error"><?php echo $sf_user->getFlash('error') ?></div>
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <?php echo $sf_user->getFlash('error') ?>
+          </div>
         <?php endif; ?>
 
         <?php echo $sf_content ?>
 
       </div>
-
       <div class="span3">
         <div class="well sidebar-nav">
 
@@ -77,7 +81,6 @@
 
         </div>
       </div>
-
     </div>
   </div>
 

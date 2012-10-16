@@ -100,6 +100,11 @@ class bookmarksActions extends sfActions
 		{
 			$Bookmark = $form->save();
 
+			if ($form->isNew())
+				$this->getUser()->setFlash('notice', $this->getContext()->getI18n()->__('Bookmark created'));
+			else
+				$this->getUser()->setFlash('notice', $this->getContext()->getI18n()->__('Bookmark update'));
+
 			$this->redirect('bookmarks/edit?id='.$Bookmark->getId());
 		}
 	}
