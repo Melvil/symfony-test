@@ -139,6 +139,11 @@ class bookmarksActions extends sfActions
 				addJoin(BookmarkPeer::ID, BookmarkCategoryPeer::BOOKMARK_ID, Criteria::INNER_JOIN)->
 				add(BookmarkCategoryPeer::CATEGORY_ID, $this->Category->getId(), Criteria::EQUAL);
 
+		$this->pager = new sfPropelPager('Bookmark', sfConfig::get('app_bookmarks_limit'));
+		$this->pager->setCriteria($criteria);
+		$this->pager->setPage($request->getParameter('page', 1));
+		$this->pager->init();
+
 		$this->Bookmarks = BookmarkPeer::doSelectWithSearch($request->getParameter('search'), $criteria);
 
 		$this->setTemplate('index');
