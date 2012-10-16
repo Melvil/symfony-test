@@ -15,16 +15,24 @@
 </head>
 <body>
 
+<?php $is_auth = $sf_user->isAuthenticated(); ?>
+
   <header class="container">
     <div class="navbar">
       <div class="navbar-inner">
+
         <a class="brand" href="<?php echo url_for('@homepage') ?>"><?php echo __('Bookmarks') ?></a>
+
         <ul class="nav">
-          <li><?php // echo link_to(__('All'), 'bookmark/index') ?></li>
-          <li><?php // echo link_to(__('Rating'), 'bookmark/rating') ?></li>
+          <li><?php echo link_to(__('All'), 'bookmarks/index') ?></li>
+          <li><?php echo link_to(__('Rating'), 'bookmarks/rating') ?></li>
+          <?php if ($is_auth): ?>
+            <li><?php echo link_to(__('My bookmarks'), 'bookmarks/my') ?></li>
+          <?php endif; ?>
         </ul>
+
         <ul class="nav pull-right">
-          <?php if ($sf_user->isAuthenticated()): ?>
+          <?php if ($is_auth): ?>
             <li class="brand"><?php echo $sf_user->getUsername() ?></li>
             <li><?php echo link_to(__('Logout'), '@sf_guard_signout') ?></li>
           <?php else: ?>
@@ -32,13 +40,16 @@
             <li><?php echo link_to(__('Registration'), 'registration/index') ?></li>
           <?php endif; ?>
         </ul>
+
       </div>
     </div>
   </header>
 
   <div class="container">
     <div class="row">
+
        <div class="span9">
+
         <?php if ($sf_user->hasFlash('notice')): ?>
           <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>
         <?php endif; ?>
@@ -48,15 +59,23 @@
         <?php endif; ?>
 
         <?php echo $sf_content ?>
+
       </div>
+
       <div class="span3">
         <div class="well sidebar-nav">
+
           <h3>Right region</h3>
-          <ul class="nav nav-list">
-            <li><?php // echo link_to(__('New bookmark'), 'bookmark/new') ?></li>
-          </ul>
+
+          <?php if ($is_auth): ?>
+            <ul class="nav nav-list">
+              <li><?php echo link_to(__('New bookmark'), 'bookmarks/new') ?></li>
+            </ul>
+          <?php endif; ?>
+
         </div>
       </div>
+
     </div>
   </div>
 

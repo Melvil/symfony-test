@@ -51,7 +51,7 @@ Bookmark:
   b8:           { user_id: admin, title: Яндекс почта, url: mail.yandex.ru }
   b9:           { user_id: admin, title: Хабрахабр, url: http://habrahabr.ru/ }
   b10:          { user_id: Melvil, title: Basecamp, url: https://basecamp.com }
-  b11:          { user_id: test, title: Яндекс почта, url: http://www.overclockers.ru/ }
+  b11:          { user_id: test, title: Overclockers, url: http://www.overclockers.ru/ }
   b12:          { user_id: admin, title: Github, url: https://github.com/ }
   b13:          { user_id: admin, title: Bitbucket, url: https://bitbucket.org/ }
 
