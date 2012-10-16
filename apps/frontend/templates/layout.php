@@ -69,15 +69,12 @@
       <div class="span3">
         <div class="well sidebar-nav">
 
-          <h3>Right region</h3>
+          <?php include_component('categories', 'categories') ?>
 
           <?php if ($is_auth): ?>
-            <ul class="nav nav-list">
-              <li><?php echo link_to(__('New bookmark'), 'bookmarks/new') ?></li>
-            </ul>
+            <br />
+            <h4><?php echo link_to(__('New bookmark'), 'bookmarks/new') ?></h4>
           <?php endif; ?>
-
-          <?php include_component('categories', 'categories') ?>
 
         </div>
       </div>
@@ -86,6 +83,7 @@
 
   <footer class="container">
     <br /><br />
+    <?php include_component('language', 'language') ?>
     <p>&copy; Symfony test work 2012</p>
   </footer>
 
