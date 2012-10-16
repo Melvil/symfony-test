@@ -29,4 +29,9 @@ class Bookmark extends BaseBookmark {
 		parent::__construct();
 	}
 
+
+	public function __toString()
+	{
+		return $this->getTitle();
+	}
 } // Bookmark

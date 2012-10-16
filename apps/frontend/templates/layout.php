@@ -18,7 +18,7 @@
   <header class="container">
     <div class="navbar">
       <div class="navbar-inner">
-        <a class="brand" href="<?php echo url_for('/') ?>"><?php echo __('Bookmarks') ?></a>
+        <a class="brand" href="<?php echo url_for('@homepage') ?>"><?php echo __('Bookmarks') ?></a>
         <ul class="nav">
           <li><?php // echo link_to(__('All'), 'bookmark/index') ?></li>
           <li><?php // echo link_to(__('Rating'), 'bookmark/rating') ?></li>
@@ -26,10 +26,10 @@
         <ul class="nav pull-right">
           <?php if ($sf_user->isAuthenticated()): ?>
             <li class="brand"><?php echo $sf_user->getUsername() ?></li>
-            <li><?php echo link_to(__('Logout'), 'sf_guard_signout') ?></li>
+            <li><?php echo link_to(__('Logout'), '@sf_guard_signout') ?></li>
           <?php else: ?>
-            <li><?php echo link_to(__('Login'), 'sf_guard_signin') ?></li>
-            <li><?php // echo link_to(__('Registration'), 'registration') ?></li>
+            <li><?php echo link_to(__('Login'), '@sf_guard_signin') ?></li>
+            <li><?php echo link_to(__('Registration'), 'registration/index') ?></li>
           <?php endif; ?>
         </ul>
       </div>
