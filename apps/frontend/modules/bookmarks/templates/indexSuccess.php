@@ -46,4 +46,8 @@
 
 <?php echo link_to(__('New bookmark'), 'bookmarks/new') ?>
 
-<?php include_partial('global/pager', array('url_params' => $current_url_params, 'pager' => $pager)) ?>
+<?php
+  $current_url_params['search'] = $sf_params->get('search');
+   if (!$current_url_params['search']) unset($current_url_params['search']);
+  include_partial('global/pager', array('url_params' => $current_url_params, 'pager' => $pager))
+?>
