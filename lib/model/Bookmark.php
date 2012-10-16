@@ -34,4 +34,13 @@ class Bookmark extends BaseBookmark {
 	{
 		return $this->getTitle();
 	}
+
+
+	public function save(PropelPDO $con = null)
+	{
+		if ($this->isNew())
+			$this->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
+
+		return parent::save($con);
+	}
 } // Bookmark

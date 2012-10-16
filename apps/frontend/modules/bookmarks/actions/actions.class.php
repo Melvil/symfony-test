@@ -48,14 +48,18 @@ class bookmarksActions extends sfActions
 
 	public function executeNew(sfWebRequest $request)
 	{
-		$this->form = new BookmarkForm();
+		if (!$this->getUser()->isAuthenticated()) $this->forward404();
+
+		$this->form = new BookmarkUserForm();
 	}
 
 	public function executeCreate(sfWebRequest $request)
 	{
+		if (!$this->getUser()->isAuthenticated()) $this->forward404();
+
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 
-		$this->form = new BookmarkForm();
+		$this->form = new BookmarkUserForm();
 
 		$this->processForm($request, $this->form);
 
@@ -64,14 +68,14 @@ class bookmarksActions extends sfActions
 
 	public function executeEdit(sfWebRequest $request)
 	{
-		$this->form = new BookmarkForm($this->getBookmarkById($request));
+		$this->form = new BookmarkUserForm($this->getBookmarkByIdMy($request));
 	}
 
 	public function executeUpdate(sfWebRequest $request)
 	{
 		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
 
-		$this->form = new BookmarkForm($this->getBookmarkById($request));
+		$this->form = new BookmarkUserForm($this->getBookmarkByIdMy($request));
 
 		$this->processForm($request, $this->form);
 
@@ -82,7 +86,7 @@ class bookmarksActions extends sfActions
 	{
 		$request->checkCSRFProtection();
 
-		$this->getBookmarkById($request)->delete();
+		$this->getBookmarkByIdMy($request)->delete();
 
 		$this->redirect('bookmarks/index');
 	}
@@ -91,6 +95,7 @@ class bookmarksActions extends sfActions
 	protected function processForm(sfWebRequest $request, sfForm $form)
 	{
 		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+
 		if ($form->isValid())
 		{
 			$Bookmark = $form->save();
@@ -104,6 +109,23 @@ class bookmarksActions extends sfActions
 		$Bookmark = BookmarkPeer::retrieveByPk($request->getParameter('id'));
 
 		$this->forward404Unless($Bookmark, $is_msg ? sprintf('Object Bookmark does not exist (%s).', $request->getParameter('id')) : null);
+
+		return $Bookmark;
+	}
+
+	protected function getBookmarkByIdMy($request)
+	{
+		if ($this->getUser()->isAuthenticated())
+		{
+			$Bookmark = BookmarkPeer::retrieveByPk($request->getParameter('id'));
+
+			$this->forward404Unless($Bookmark, sprintf('Object Bookmark does not exist (%s).', $request->getParameter('id')));
+
+			if ($Bookmark->getUserId() !== $this->getUser()->getGuardUser()->getId())
+				$this->forward404('Access denied');
+		}
+		else
+			$this->forward404('Access denied');
 
 		return $Bookmark;
 	}
