@@ -16,6 +16,29 @@
  *
  * @package    lib.model
  */
-class BookmarkPeer extends BaseBookmarkPeer {
+class BookmarkPeer extends BaseBookmarkPeer
+{
+	public static function doSelectWithSearch($search, Criteria $criteria, PropelPDO $con = null)
+	{
+		$critcopy = clone $criteria;
 
+		$search = str_replace('%', '', $search);
+
+		if ($search)
+		{
+			$s = '%' . $search . '%';
+
+			// $s = '%' . str_replace(array('=', '_', '%'), array('==', '=_', '=%'), $search) . '%';
+			// "name LIKE '%$escapedname%' ESCAPE '='"
+
+			$critcopy->add(
+				$critcopy->
+					getNewCriterion(self::TITLE, $s, Criteria::LIKE)->
+						addOr($critcopy->getNewCriterion(self::INFO, $s, Criteria::LIKE))->
+						addOr($critcopy->getNewCriterion(self::URL, $s, Criteria::LIKE))
+			);
+		}
+
+		return self::doSelect($critcopy, $con);
+	}
 } // BookmarkPeer

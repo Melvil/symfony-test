@@ -14,7 +14,7 @@ class bookmarksActions extends sfActions
 		$criteria = new Criteria();
 		$criteria->addAscendingOrderByColumn(BookmarkPeer::TITLE);
 
-		$this->Bookmarks = BookmarkPeer::doSelect($criteria);
+		$this->bookmarksSelect($request, $criteria);
 	}
 
 	public function executeRating(sfWebRequest $request)
@@ -24,8 +24,7 @@ class bookmarksActions extends sfActions
 			addDescendingOrderByColumn(BookmarkPeer::RATING)->
 			addAscendingOrderByColumn(BookmarkPeer::ID);
 
-		$this->Bookmarks = BookmarkPeer::doSelect($criteria);
-		$this->setTemplate('index');
+		$this->bookmarksSelect($request, $criteria);
 	}
 
 	public function executeMy(sfWebRequest $request)
@@ -39,8 +38,7 @@ class bookmarksActions extends sfActions
 			add(BookmarkPeer::USER_ID, $user->getGuardUser()->getId(), Criteria::EQUAL)->
 			addAscendingOrderByColumn(BookmarkPeer::TITLE);
 
-		$this->Bookmarks = BookmarkPeer::doSelect($criteria);
-		$this->setTemplate('index');
+		$this->bookmarksSelect($request, $criteria);
 	}
 
 	public function executeShow(sfWebRequest $request)
@@ -108,5 +106,11 @@ class bookmarksActions extends sfActions
 		$this->forward404Unless($Bookmark, $is_msg ? sprintf('Object Bookmark does not exist (%s).', $request->getParameter('id')) : null);
 
 		return $Bookmark;
+	}
+
+	protected function bookmarksSelect($request, $criteria)
+	{
+		$this->Bookmarks = BookmarkPeer::doSelectWithSearch($request->getParameter('search'), $criteria);
+		$this->setTemplate('index');
 	}
 }
