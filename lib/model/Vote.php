@@ -16,6 +16,44 @@
  *
  * @package    lib.model
  */
-class Vote extends BaseVote {
+class Vote extends BaseVote
+{
+	public function save(PropelPDO $con = null)
+	{
+		if (!$this->isNew()) throw new PropelException('Vote not updated');
 
+		$res = parent::save($con);
+
+		$this->bookmarkUpdateVotes($this->getBookmarkId(), $this->getVote());
+
+		return $res;
+	}
+
+	public function delete(PropelPDO $con = null)
+	{
+		$res = parent::delete($con);
+
+		$this->bookmarkUpdateVotes($this->getBookmarkId(), $this->getVote());
+
+		return $res;
+	}
+
+	protected function bookmarkUpdateVotes($bookmark_id, $vote)
+	{
+		if (!$bookmark_id) return false;
+
+		$c1 = new Criteria();
+		$c1->add(BookmarkPeer::ID, $bookmark_id);
+
+		$c2 = new Criteria();
+
+		if ($vote)
+			$c2->add(BookmarkPeer::VOTE_GOOD, BookmarkPeer::VOTE_GOOD . ' + 1', Criteria::CUSTOM_EQUAL);
+		else
+			$c2->add(BookmarkPeer::VOTE_BAD, BookmarkPeer::VOTE_BAD . ' + 1', Criteria::CUSTOM_EQUAL);
+
+		$c2->add(BookmarkPeer::RATING, BookmarkPeer::RATING . ' ' . ($vote ? '+' : '-') . ' 1', Criteria::CUSTOM_EQUAL);
+
+		BasePeer::doUpdate($c1, $c2, Propel::getConnection());
+	}
 } // Vote

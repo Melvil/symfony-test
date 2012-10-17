@@ -1,25 +1,14 @@
 <?php
   use_helper('Text');
 
-  $current_url_params = array(
-    'module' => $sf_params->get('module'),
-    'action' => $sf_params->get('action'),
-    'category' => $sf_params->get('category')
-  );
-  if (!$current_url_params['category']) unset($current_url_params['category']);
+  $current_url_params = $sf_request->getParameterHolder()->getAll();
 ?>
 
-<h1><?php echo __('Bookmarks List') ?></h1>
+<?php slot('h1_title', __('Bookmarks List')) ?>
 
-<br />
-<form action="<?php echo url_for($current_url_params) ?>" method="get">
-  <input type="text" name="search" value="<?php echo $sf_params->get('search') ?>" id="search_keywords" />
-  <input type="submit" value="<?php echo __('search') ?>" />
-  <div class="help"><?php echo __('Enter some keywords (title, info, url)') ?></div>
-</form>
-<br />
+<?php include_partial('search_filter', array('url_params' => $current_url_params)) ?>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th><?php echo __('Id') ?></th>
@@ -27,27 +16,42 @@
       <th><?php echo __('Info') ?></th>
       <th><?php echo __('Url') ?></th>
       <th><?php echo __('Rating') ?></th>
-      <th><?php echo __('Created at') ?></th>
+      <th><?php echo __('Voting') ?></th>
+      <th><?php echo __('Actions') ?></th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($Bookmarks as $Bookmark): ?>
     <tr>
-      <td><a href="<?php echo url_for('bookmarks/show?id='.$Bookmark->getId()) ?>"><?php echo $Bookmark->getId() ?></a></td>
+      <td><?php echo $Bookmark->getId() ?></td>
       <td><?php echo $Bookmark->getTitle() ?></td>
       <td><?php echo $Bookmark->getInfo() ?></td>
       <td><?php echo auto_link_text($Bookmark->getUrl()) ?></td>
-      <td><?php echo $Bookmark->getRating() ?></td>
-      <td><?php echo $Bookmark->getCreatedAt() ?></td>
+      <td><span title="Всего <?php echo $Bookmark->getVoteAll() ?>: ↑<?php echo $Bookmark->getVoteGood() ?> и ↓<?php echo $Bookmark->getVoteBad() ?>">
+        <?php echo $Bookmark->getRating() ?>
+      </span></td>
+      <td>
+        <?php $vote = isset($Votes[$Bookmark->getId()]) ? $Votes[$Bookmark->getId()] : null; ?>
+        <?php if ($currentUserId && $vote === null && $Bookmark->getUserId() !== $currentUserId): ?>
+          <span><?php echo link_to('<i class="icon-thumbs-up"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=1', array('title' => __('Good'))) ?></span>
+          <span><?php echo link_to('<i class="icon-thumbs-down"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=0', array('title' => __('Bad'))) ?></span>
+        <?php else: ?>
+          <span><i class="icon-thumbs-up icon-white"></i></span>
+          <span><i class="icon-thumbs-down icon-white"></i></span>
+        <?php endif; ?>
+      </td>
+      <td>
+        <?php if ($Bookmark->getUserId() === $currentUserId): ?>
+          <span><?php echo link_to('<i class="icon-edit"></i>', 'bookmarks/edit?id=' . $Bookmark->getId(), array('title' => __('Edit'), 'class' => 'btn btn-small')) ?></span>
+          <span><?php echo link_to('<i class="icon-remove"></i>', 'bookmarks/delete?id=' . $Bookmark->getId(), array('title' => __('Delete'), 'class' => 'btn btn-small', 'method' => 'delete', 'confirm' => __('Are you sure?'))) ?></span>
+        <?php else: ?>
+          <span class="btn btn-small"><i class="icon-edit icon-white"></i></span>
+          <span class="btn btn-small"><i class="icon-remove icon-white"></i></span>
+        <?php endif; ?>
+      </td>
     </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
 
-<?php echo link_to(__('New bookmark'), 'bookmarks/new') ?>
-
-<?php
-  $current_url_params['search'] = $sf_params->get('search');
-   if (!$current_url_params['search']) unset($current_url_params['search']);
-  include_partial('global/pager', array('url_params' => $current_url_params, 'pager' => $pager))
-?>
+<?php include_partial('global/pager', array('url_params' => $current_url_params, 'pager' => $pager)) ?>

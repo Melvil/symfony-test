@@ -16,6 +16,25 @@
  *
  * @package    lib.model
  */
-class VotePeer extends BaseVotePeer {
+class VotePeer extends BaseVotePeer
+{
+	public static function getVoteBookmarksByUser($Bookmarks, $user_id)
+	{
+		if (!$user_id || !$Bookmarks) return array();
 
+		$ids = array();
+		foreach ($Bookmarks as $b) $ids[] = $b->getId();
+
+		$criteria = new Criteria();
+		$criteria->
+			add(self::USER_ID, $user_id, Criteria::EQUAL)->
+			add(self::BOOKMARK_ID, $ids, Criteria::IN);
+
+		$votes = array();
+
+		foreach(self::doSelect($criteria) as $v)
+			$votes[$v->getBookmarkId()] = $v->getVote();
+
+		return $votes;
+	}
 } // VotePeer

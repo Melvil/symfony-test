@@ -19,7 +19,7 @@
 sfGuardUser:
   admin:        { username: admin, password: admin, is_super_admin: true }
   Melvil:       { username: Melvil, password: 123 }
-  test:        { username: test, password: 123 }
+  test:         { username: test, password: 123 }
 
 Category:
   cat1:         { }
@@ -56,23 +56,27 @@ Bookmark:
   b13:          { user_id: admin, title: Bitbucket, url: https://bitbucket.org/ }
 
 BookmarkCategory:
-  bc1:           { bookmark_id: b1, category_id: cat1 }
-  bc2:           { bookmark_id: b2, category_id: cat1 }
-  bc3:           { bookmark_id: b2, category_id: cat2 }
-  bc4:           { bookmark_id: b3, category_id: cat1 }
-  bc5:           { bookmark_id: b4, category_id: cat1 }
-  bc6:           { bookmark_id: b5, category_id: cat1 }
-  bc7:           { bookmark_id: b6, category_id: cat1 }
-  bc8:           { bookmark_id: b7, category_id: cat2 }
-  bc9:           { bookmark_id: b8, category_id: cat2 }
-  bc10:          { bookmark_id: b9, category_id: cat3 }
-  bc11:          { bookmark_id: b9, category_id: cat4 }
-  bc12:          { bookmark_id: b10, category_id: cat4 }
-  bc13:          { bookmark_id: b11, category_id: cat3 }
-  bc14:          { bookmark_id: b12, category_id: cat4 }
-  bc15:          { bookmark_id: b13, category_id: cat4 }
+  bc1:          { bookmark_id: b1, category_id: cat1 }
+  bc2:          { bookmark_id: b2, category_id: cat1 }
+  bc3:          { bookmark_id: b2, category_id: cat2 }
+  bc4:          { bookmark_id: b3, category_id: cat1 }
+  bc5:          { bookmark_id: b4, category_id: cat1 }
+  bc6:          { bookmark_id: b5, category_id: cat1 }
+  bc7:          { bookmark_id: b6, category_id: cat1 }
+  bc8:          { bookmark_id: b7, category_id: cat2 }
+  bc9:          { bookmark_id: b8, category_id: cat2 }
+  bc10:         { bookmark_id: b9, category_id: cat3 }
+  bc11:         { bookmark_id: b9, category_id: cat4 }
+  bc12:         { bookmark_id: b10, category_id: cat4 }
+  bc13:         { bookmark_id: b11, category_id: cat3 }
+  bc14:         { bookmark_id: b12, category_id: cat4 }
+  bc15:         { bookmark_id: b13, category_id: cat4 }
 
 Vote:
   v1:           { user_id: Melvil, bookmark_id: b1, vote: true }
   v2:           { user_id: Melvil, bookmark_id: b2, vote: false }
   v3:           { user_id: admin, bookmark_id: b1, vote: true }
+  v4:           { user_id: Melvil, bookmark_id: b3, vote: true }
+  v5:           { user_id: Melvil, bookmark_id: b4, vote: true }
+  v6:           { user_id: Melvil, bookmark_id: b5, vote: false }
+  v7:           { user_id: admin, bookmark_id: b4, vote: true }

@@ -36,9 +36,14 @@ class Bookmark extends BaseBookmark {
 	}
 
 
+	public function getVoteAll()
+	{
+		return $this->getVoteGood() + $this->getVoteBad();
+	}
+
 	public function save(PropelPDO $con = null)
 	{
-		if ($this->isNew())
+		if ($this->isNew() && !$this->getUserId())
 			$this->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
 
 		return parent::save($con);

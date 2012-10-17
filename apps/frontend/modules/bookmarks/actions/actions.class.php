@@ -9,6 +9,12 @@
  */
 class bookmarksActions extends sfActions
 {
+	public function preExecute()
+	{
+		$this->currentUserId =$this->getUser()->isAuthenticated() ? $this->getUser()->getGuardUser()->getId() : null;
+	}
+
+
 	public function executeIndex(sfWebRequest $request)
 	{
 		$criteria = new Criteria();
@@ -29,13 +35,11 @@ class bookmarksActions extends sfActions
 
 	public function executeMy(sfWebRequest $request)
 	{
-		$user = $this->getUser();
-
-		if (!$user->isAuthenticated()) $this->forward404();
+		if (!$this->currentUserId) $this->forward404();
 
 		$criteria = new Criteria();
 		$criteria->
-			add(BookmarkPeer::USER_ID, $user->getGuardUser()->getId(), Criteria::EQUAL)->
+			add(BookmarkPeer::USER_ID, $this->currentUserId, Criteria::EQUAL)->
 			addAscendingOrderByColumn(BookmarkPeer::TITLE);
 
 		$this->bookmarksSelect($request, $criteria);
@@ -91,6 +95,37 @@ class bookmarksActions extends sfActions
 		$this->redirect('bookmarks/index');
 	}
 
+	public function executeVote(sfWebRequest $request)
+	{
+		$Bookmarks = $this->getBookmarkById($request);
+
+		$this->forward404Unless($Bookmarks && $this->currentUserId);
+		if ($Bookmarks->getUserId() === $this->currentUserId) $this->forward404();
+
+		$isVote = VotePeer::retrieveByPk($this->currentUserId, $Bookmarks->getId());
+
+		if (!$isVote)
+		{
+			$Vote = new Vote();
+
+			$Vote->
+				setUserId($this->currentUserId)->
+				setBookmarkId($Bookmarks->getId())->
+				setVote($request->getParameter('vote'))->
+				save();
+		}
+
+		if ($request->isXmlHttpRequest())
+			$this->renderText('Is ajax.');
+		else
+		{
+			if ($isVote)
+				$this->getUser()->setFlash('notice', $this->getContext()->getI18n()->__('You have already voted'));
+
+			$this->redirect($this->getUser()->getReferer('bookmarks/index'));
+		}
+	}
+
 
 	protected function processForm(sfWebRequest $request, sfForm $form)
 	{
@@ -120,13 +155,13 @@ class bookmarksActions extends sfActions
 
 	protected function getBookmarkByIdMy($request)
 	{
-		if ($this->getUser()->isAuthenticated())
+		if ($this->currentUserId)
 		{
 			$Bookmark = BookmarkPeer::retrieveByPk($request->getParameter('id'));
 
 			$this->forward404Unless($Bookmark, sprintf('Object Bookmark does not exist (%s).', $request->getParameter('id')));
 
-			if ($Bookmark->getUserId() !== $this->getUser()->getGuardUser()->getId())
+			if ($Bookmark->getUserId() !== $this->currentUserId)
 				$this->forward404('Access denied');
 		}
 		else
@@ -165,7 +200,7 @@ class bookmarksActions extends sfActions
 
 		$this->Bookmarks = BookmarkPeer::doSelect($criteria);
 
-		// $this->Bookmarks = BookmarkPeer::doSelectWithSearch($request->getParameter('search'), $criteria);
+		$this->Votes = VotePeer::getVoteBookmarksByUser($this->Bookmarks, $this->currentUserId);
 
 		$this->setTemplate('index');
 	}
