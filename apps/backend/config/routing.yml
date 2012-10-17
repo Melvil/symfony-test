@@ -1,3 +1,12 @@
+category:
+  class: sfPropelRouteCollection
+  options:
+    model:                Category
+    module:               category
+    prefix_path:          /category
+    column:               id
+    with_wildcard_routes: true
+
 bookmark:
   class: sfPropelRouteCollection
   options:
