@@ -8,6 +8,8 @@
 
 <?php include_partial('search_filter', array('url_params' => $current_url_params)) ?>
 
+<?php if (count($Bookmarks)): ?>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -55,3 +57,9 @@
 </table>
 
 <?php include_partial('global/pager', array('url_params' => $current_url_params, 'pager' => $pager)) ?>
+
+<?php else: ?>
+
+<h4><?php echo __('No bookmarks') ?></h4>
+
+<?php endif; ?>

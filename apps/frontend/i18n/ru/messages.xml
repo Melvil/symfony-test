@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="EN" target-language="ru" datatype="plaintext" original="messages" date="2012-10-17T07:35:16Z" product-name="messages">
+  <file source-language="EN" target-language="ru" datatype="plaintext" original="messages" date="2012-10-17T07:48:38Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1">
@@ -115,6 +115,10 @@
       <trans-unit id="28">
         <source>Back</source>
         <target>Назад</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>No bookmarks</source>
+        <target>Закладок нет</target>
       </trans-unit>
     </body>
   </file>
