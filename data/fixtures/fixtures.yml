@@ -41,14 +41,14 @@ CategoryI18n:
   cat5_ru:      { id: cat5, culture: ru, title: Игры }
 
 Bookmark:
-  b1:           { user_id: Melvil, title: Google, url: google.com, info: самый лучший поисковик }
-  b2:           { user_id: Melvil, title: Mail.ru, url: mail.ru }
-  b3:           { user_id: Melvil, title: Yandex, url: yandex.ru, info: найдётся всё }
-  b4:           { user_id: Melvil, title: Bing, url: bing.ru }
-  b5:           { user_id: Melvil, title: Rambler, url: rambler.ru }
+  b1:           { user_id: Melvil, title: Google, url: http://google.com, info: самый лучший поисковик }
+  b2:           { user_id: Melvil, title: Mail.ru, url: http://mail.ru }
+  b3:           { user_id: Melvil, title: Yandex, url: http://yandex.ru, info: найдётся всё }
+  b4:           { user_id: Melvil, title: Bing, url: http://bing.ru }
+  b5:           { user_id: Melvil, title: Rambler, url: http://rambler.ru }
   b6:           { user_id: Melvil, title: Nigma, url: http://nigma.ru }
-  b7:           { user_id: Melvil, title: Почта гугла, url: gmail.com }
-  b8:           { user_id: admin, title: Яндекс почта, url: mail.yandex.ru }
+  b7:           { user_id: Melvil, title: Почта гугла, url: http://gmail.com }
+  b8:           { user_id: admin, title: Яндекс почта, url: http://mail.yandex.ru }
   b9:           { user_id: admin, title: Хабрахабр, url: http://habrahabr.ru/ }
   b10:          { user_id: Melvil, title: Basecamp, url: https://basecamp.com }
   b11:          { user_id: test, title: Overclockers, url: http://www.overclockers.ru/ }
