@@ -6,115 +6,115 @@
     <body>
       <trans-unit id="1">
         <source>Bookmarks</source>
-        <target/>
+        <target>Закладки</target>
       </trans-unit>
       <trans-unit id="2">
         <source>All</source>
-        <target/>
+        <target>Все</target>
       </trans-unit>
       <trans-unit id="3">
         <source>Rating</source>
-        <target/>
+        <target>Рейтинг</target>
       </trans-unit>
       <trans-unit id="4">
         <source>My bookmarks</source>
-        <target/>
+        <target>Мои закладки</target>
       </trans-unit>
       <trans-unit id="5">
         <source>Logout</source>
-        <target/>
+        <target>Выход</target>
       </trans-unit>
       <trans-unit id="6">
         <source>Login</source>
-        <target/>
+        <target>Войти</target>
       </trans-unit>
       <trans-unit id="7">
         <source>Registration</source>
-        <target/>
+        <target>Регистрация</target>
       </trans-unit>
       <trans-unit id="8">
         <source>New bookmark</source>
-        <target/>
+        <target>Новая закладка</target>
       </trans-unit>
       <trans-unit id="9">
         <source>You have already voted</source>
-        <target/>
+        <target>Вы уже проголосовали</target>
       </trans-unit>
       <trans-unit id="10">
         <source>Bookmark created</source>
-        <target/>
+        <target>Закладка добавлена</target>
       </trans-unit>
       <trans-unit id="11">
         <source>Bookmark update</source>
-        <target/>
+        <target>Закладка обновлена</target>
       </trans-unit>
       <trans-unit id="12">
         <source>Bookmarks List</source>
-        <target/>
+        <target>Список закладок</target>
       </trans-unit>
       <trans-unit id="13">
         <source>Id</source>
-        <target/>
+        <target>Номер</target>
       </trans-unit>
       <trans-unit id="14">
         <source>Title</source>
-        <target/>
+        <target>Название</target>
       </trans-unit>
       <trans-unit id="15">
         <source>Info</source>
-        <target/>
+        <target>Описание</target>
       </trans-unit>
       <trans-unit id="16">
         <source>Url</source>
-        <target/>
+        <target>Ссылка</target>
       </trans-unit>
       <trans-unit id="17">
         <source>Voting</source>
-        <target/>
+        <target>Голосование</target>
       </trans-unit>
       <trans-unit id="18">
         <source>Actions</source>
-        <target/>
+        <target>Действия</target>
       </trans-unit>
       <trans-unit id="19">
         <source>Good</source>
-        <target/>
+        <target>Хорошо</target>
       </trans-unit>
       <trans-unit id="20">
         <source>Bad</source>
-        <target/>
+        <target>Плохо</target>
       </trans-unit>
       <trans-unit id="21">
         <source>Edit</source>
-        <target/>
+        <target>Редактировать</target>
       </trans-unit>
       <trans-unit id="22">
         <source>Delete</source>
-        <target/>
+        <target>Удалить</target>
       </trans-unit>
       <trans-unit id="23">
         <source>Are you sure?</source>
-        <target/>
+        <target>Вы уверены ?</target>
       </trans-unit>
       <trans-unit id="24">
         <source>search</source>
-        <target/>
+        <target>поиск</target>
       </trans-unit>
       <trans-unit id="25">
         <source>Enter some keywords (title, info, url)</source>
-        <target/>
+        <target>Введите фразу для поиска</target>
       </trans-unit>
       <trans-unit id="26">
         <source>Categories</source>
-        <target/>
+        <target>Категории</target>
       </trans-unit>
       <trans-unit id="27">
         <source>You have successfully registered</source>
-        <target/>
+        <target>Вы успешно зарегистрированы</target>
       </trans-unit>
       <trans-unit id="28">
         <source>Back</source>
-        <target/>
+        <target>Назад</target>
       </trans-unit>
     </body>
   </file>
