@@ -116,7 +116,7 @@ class bookmarksActions extends sfActions
 		}
 
 		if ($request->isXmlHttpRequest())
-			$this->renderText('Is ajax.');
+			return $this->renderText('Vote success');
 		else
 		{
 			if ($isVote)

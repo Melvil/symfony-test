@@ -22,19 +22,19 @@
   </thead>
   <tbody>
     <?php foreach ($Bookmarks as $Bookmark): ?>
-    <tr>
+    <tr class="jsVote">
       <td><?php echo $Bookmark->getId() ?></td>
       <td><?php echo $Bookmark->getTitle() ?></td>
       <td><?php echo $Bookmark->getInfo() ?></td>
       <td><?php echo auto_link_text($Bookmark->getUrl()) ?></td>
-      <td><span title="Всего <?php echo $Bookmark->getVoteAll() ?>: ↑<?php echo $Bookmark->getVoteGood() ?> и ↓<?php echo $Bookmark->getVoteBad() ?>">
+      <td><span class="jsRating" title="Всего <?php echo $Bookmark->getVoteAll() ?>: ↑<?php echo $Bookmark->getVoteGood() ?> и ↓<?php echo $Bookmark->getVoteBad() ?>">
         <?php echo $Bookmark->getRating() ?>
       </span></td>
       <td>
         <?php $vote = isset($Votes[$Bookmark->getId()]) ? $Votes[$Bookmark->getId()] : null; ?>
         <?php if ($currentUserId && $vote === null && $Bookmark->getUserId() !== $currentUserId): ?>
-          <span><?php echo link_to('<i class="icon-thumbs-up"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=1', array('title' => __('Good'))) ?></span>
-          <span><?php echo link_to('<i class="icon-thumbs-down"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=0', array('title' => __('Bad'))) ?></span>
+          <span><?php echo link_to('<i class="icon-thumbs-up"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=1', array('title' => __('Good'), 'class' => 'jsGood')) ?></span>
+          <span><?php echo link_to('<i class="icon-thumbs-down"></i>', 'bookmarks/vote?id=' . $Bookmark->getId() . '&vote=0', array('title' => __('Bad'), 'class' => 'jsBad')) ?></span>
         <?php else: ?>
           <span><i class="icon-thumbs-up icon-white"></i></span>
           <span><i class="icon-thumbs-down icon-white"></i></span>
