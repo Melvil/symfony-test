@@ -1,8 +1,8 @@
 generator:
-  class: sfPropelGenerator
+  class: sfPropelBoostrapGenerator
   param:
     model_class:           Bookmark
-    theme:                 admin
+    theme:                 sfBootstrapTheme
     non_verbose_templates: true
     with_show:             false
     singular:              Bookmark
@@ -10,6 +10,7 @@ generator:
     route_prefix:          bookmark
     with_propel_route:     1
     actions_base_class:    sfActions
+    css:                   false
 
     config:
       actions: ~
