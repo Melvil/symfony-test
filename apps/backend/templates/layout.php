@@ -28,6 +28,7 @@
         </ul>
 
         <ul class="nav pull-right">
+          <li><a href="/"><?php echo __('Go to frontend') ?></a></li>
           <?php if ($sf_user->isAuthenticated()): ?>
             <li class="brand"><?php echo $sf_user->getUsername() ?></li>
             <li><?php echo link_to(__('Logout'), '@sf_guard_signout') ?></li>

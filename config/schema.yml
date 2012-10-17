@@ -18,7 +18,7 @@ propel:
     updated_at:   ~
 
   category_i18n:
-    id:           { type: integer, required: true, primaryKey: true, foreignTable: category, foreignReference: id }
+    id:           { type: integer, required: true, primaryKey: true, foreignTable: category, foreignReference: id, onDelete: cascade }
     culture:      { isCulture: true, type: char, size: 2, required: true, primaryKey: true }
     title:        { type: varchar(255), required: true, index: true }
 

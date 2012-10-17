@@ -63,6 +63,7 @@ CREATE TABLE `category_i18n`
 	CONSTRAINT `category_i18n_FK_1`
 		FOREIGN KEY (`id`)
 		REFERENCES `category` (`id`)
+		ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 #-----------------------------------------------------------------------------
