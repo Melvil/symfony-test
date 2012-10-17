@@ -5,3 +5,6 @@
 all:
   bookmarks:
     limit: 10
+
+  sf_guard_plugin:
+    success_signout_url: @homepage

@@ -49,6 +49,8 @@
     <div class="row">
        <div class="span9">
 
+        <h1><?php include_slot('h1_title') ?></h1>
+
         <?php if ($sf_user->hasFlash('notice')): ?>
           <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>

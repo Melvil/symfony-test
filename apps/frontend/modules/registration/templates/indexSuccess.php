@@ -1,3 +1,4 @@
+<?php slot('h1_title', __('Registration')) ?>
 
 <form action="<?php echo url_for('registration/create') ?>" method="post">
 	<input type="hidden" name="sf_method" value="put" />

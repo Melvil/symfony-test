@@ -3,6 +3,7 @@
   <?php
     $current_page = $pager->getPage();
     $url_params = $sf_data->getRaw('url_params');
+    unset($url_params['page']);
   ?>
 
   <div class="pagination">
